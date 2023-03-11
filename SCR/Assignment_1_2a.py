@@ -11,13 +11,13 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 import numpy as np
 
-images_in, labesls_in = preprocess.read_images_to_array("/Datasets/flower_photos")
+images_in, labesls_in = preprocess.read_images_to_array("../Datasets/flower_photos")
 
 # Preforming 80-20 split, stratified
 train_set, test_set, train_labels, test_labels = train_test_split(images_in, labesls_in, test_size=0.2, random_state=42,
                                                                   stratify=labesls_in, shuffle=True)
 
-k = 2  # defining k as number of clusters
+k = 200  # defining k as number of clusters
 
 kmean = preprocess.compute_cluster_centriods(preprocess.compute_descriptor_array(train_set), k=k)
 training_vocabulary = preprocess.compute_vocabulary(train_set, kmean=kmean, k=k)
